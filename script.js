@@ -101,21 +101,23 @@ function combat(enemy) {
         var item = window.prompt("1.Herbs, 2.Potion, 3.Elixir:");
         if (item == 1) {
             player.useItem("herbs");
-            enemy.attack(player);
-            combat(enemy);
+            // enemy.attack(player);
+            // combat(enemy);
         } else if (item == 2) {
             player.useItem("potion");
-            enemy.attack(player);
-            combat(enemy);
+            // enemy.attack(player);
+            // combat(enemy);
         } else if (item == 3) {
             player.useItem("elixir");
-            enemy.attack(player);
-            combat(enemy);
+            // enemy.attack(player);
+            // combat(enemy);
         } else {
             player.useItem("item");
-            enemy.attack(player);
-            combat(enemy);
+            // enemy.attack(player);
+            // combat(enemy);
         }
+        enemy.attack(player);
+        combat(enemy);
     } else if (option == 3) {
         console.log(`${player.name} runs away.`);
         enemy.life = enemy.maxLife;
