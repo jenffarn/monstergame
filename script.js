@@ -86,35 +86,35 @@ function explore() {
 
 function combat(enemy) {
     if (player.life > 0) {
-    var option = window.prompt("1.Attack, 2.Use item, 3.Flee:");
-    if (option == 1) {
-        player.attack(enemy);
-        if (enemy.life > 0) {
+        var option = window.prompt("1.Attack, 2.Use item, 3.Flee:");
+        if (option == 1) {
+            player.attack(enemy);
+            if (enemy.life > 0) {
+                enemy.attack(player);
+                combat(enemy);
+            } else {
+                console.log(`${player.name} kills ${enemy.name}.`);
+                enemy.life = enemy.maxLife;
+            }
+        } else if (option == 2) {
+            var item = window.prompt("1.Herbs, 2.Potion, 3.Elixir:");
+            if (item == 1) {
+                player.useItem("herbs");
+            } else if (item == 2) {
+                player.useItem("potion");
+            } else if (item == 3) {
+                player.useItem("elixir");
+            } else {
+                player.useItem("item");
+            }
             enemy.attack(player);
             combat(enemy);
-        } else {
-            console.log(`${player.name} kills ${enemy.name}.`);
+        } else if (option == 3) {
+            console.log(`${player.name} runs away.`);
             enemy.life = enemy.maxLife;
-        }
-    } else if (option == 2) {
-        var item = window.prompt("1.Herbs, 2.Potion, 3.Elixir:");
-        if (item == 1) {
-            player.useItem("herbs");
-        } else if (item == 2) {
-            player.useItem("potion");
-        } else if (item == 3) {
-            player.useItem("elixir");
         } else {
-            player.useItem("item");
+            combat(enemy);
         }
-        enemy.attack(player);
-        combat(enemy);
-    } else if (option == 3) {
-        console.log(`${player.name} runs away.`);
-        enemy.life = enemy.maxLife;
-    } else {
-        combat(enemy);
-    }
     } else {
         console.log(`${enemy.name} kills ${player.name}.`);
     }    
@@ -138,7 +138,18 @@ while (player.life > 0) {
             break;
         case "3":
             console.log(player.bag);
+            break;
         case "4":
+            var item = window.prompt("1.Herbs, 2.Potion, 3.Elixir:");
+            if (item == 1) {
+                player.useItem("herbs");
+            } else if (item == 2) {
+                player.useItem("potion");
+            } else if (item == 3) {
+                player.useItem("elixir");
+            } else {
+                player.useItem("item");
+            }
             break;
         case "5":
             player.life = 0;
