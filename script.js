@@ -117,6 +117,7 @@ function combat(enemy) {
         }
     } else {
         console.log(`${enemy.name} kills ${player.name}.`);
+        console.log(`Game over.`);
     }    
 }
 
@@ -125,9 +126,10 @@ var playerName = window.prompt("Key in your name: ");
 var player = new Player(playerName, 100, 100, 20, []);
 var goblin = new Monsters("Goblin", 100, 100, 10);
 var orc = new Monsters("Orc", 150, 150, 25);
-var dragon = new Monsters("Dragon", 300, 300, 60);
+var dragon = new Monsters("Dragon", 300, 300, 50);
 
-while (player.life > 0) {
+var playGame = true;
+while (player.life > 0 && playGame == true) {
     var action = window.prompt("1.Explore, 2.Health status, 3.Inventory, 4.Use item, 5.Exit game:");
     switch (action) {
         case "1":
@@ -152,7 +154,8 @@ while (player.life > 0) {
             }
             break;
         case "5":
-            player.life = 0;
+            playGame = false;
+            console.log(`Good bye, ${player.name}!`)
         break;     
     }
 } 
