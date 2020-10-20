@@ -1,3 +1,4 @@
+// constructor function for player
 function Player(name, life, maxLife, strength, bag) {
     this.name = name;
     this.life = life;
@@ -36,6 +37,7 @@ function Player(name, life, maxLife, strength, bag) {
     }
 }
 
+// constructor function for monsters
 function Monsters(name, life, maxLife, strength) {
     this.name = name;
     this.life = life;
@@ -48,6 +50,7 @@ Monsters.prototype.attack = function(victim) {
     victim.life = victim.life - this.strength;
 }
 
+// player explores the area with random encounters with monsters and pick up useful items
 function explore() {
     var event = Math.floor(Math.random() * 7);
     switch (event) {
@@ -84,6 +87,7 @@ function explore() {
     }
 }
 
+// perform combat with monsters, can choose to fight or run or use healing items
 function combat(enemy) {
     if (player.life > 0) {
         var option = window.prompt("1.Attack, 2.Use item, 3.Flee:");
@@ -128,6 +132,7 @@ var goblin = new Monsters("Goblin", 100, 100, 10);
 var orc = new Monsters("Orc", 150, 150, 25);
 var dragon = new Monsters("Dragon", 300, 300, 50);
 
+// main game loop, ends when player chooses exit or dies in combat
 var playGame = true;
 while (player.life > 0 && playGame == true) {
     var action = window.prompt("1.Explore, 2.Health status, 3.Inventory, 4.Use item, 5.Exit game:");
